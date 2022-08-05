@@ -6,7 +6,6 @@ let printDate = function() {
 }
  
 let printMonth = function() {
-    let today = new Date()
     let date = today.getMonth();
     console.log("Month : " , date)
 }
