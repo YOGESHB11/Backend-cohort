@@ -35,4 +35,75 @@ router.get('/student-details/:name', function(req, res){
     res.send('Dummy response')
 })
 
+router.get('/movies', function(req,res){
+    let movies = ['3 Idiots','Rocketry','RRR','Interstellar','M.S.Dhoni']
+    res.send(movies)
+});
+
+router.get('/movies/:indexNumber', function(req,res){
+    let movies = ['3 Idiots','Rocketry','RRR','Interstellar','M.S.Dhoni']
+    let address = req.params.indexNumber
+    if(address > movies.length -1 || address <= -1){
+        res.send("Error : Use a valid index")
+    }
+    else{
+        res.send(movies[address])
+    }
+    
+});
+
+router.get('/films' , function(req,res){
+    let films = [{
+        "id" : 1,
+        "name" : "RRR"
+    },{
+        "id" : 2,
+        "name" : "Interstellar"
+    },{
+        "id" : 3,
+        "name" : "Rocketry"
+    },{
+        "id" : 4,
+        "name" : "3 Idiots"
+    }]
+    
+    res.send(films)
+       
+});
+
+router.get('/films/:filmId' , function(req,res){ 
+let films = [{
+    id : 1,
+    name : "RRR"
+},{
+    id : 2,
+    name : "Interstellar"
+},{
+    id : 3,
+    name : "Rocketry"
+},{
+    id : 4,
+    name : "3 Idiots"
+}];
+
+let newId = req.params.filmId;
+let len = films.length
+
+for( let i = 0 ; i<films.length ; i++){
+    let film = films[i]
+    if(newId>len || newId == 0 || newId < 0 ){
+        
+        res.send("No such film exist with thus Id")
+        
+    }   
+  
+    if(newId == film.id){
+        res.send(film)
+    }
+
+}
+
+
+});
+
 module.exports = router;
