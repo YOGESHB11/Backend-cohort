@@ -8,6 +8,24 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+const logData= function (req, res, next) {
+    var currentdate = new Date(); 
+    var dateAndTime =  currentdate.getDate() + "/"
+                    + (currentdate.getMonth()+1)  + "/" 
+                    + currentdate.getFullYear() + "  "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":" 
+                    + currentdate.getSeconds();
+ 
+    let ip= req.ip
+    let url= req.originalUrl
+    console.log(dateAndTime," ",ip," ",url )
+    next()    
+}
+ 
+app.use( logData )
+
+
 mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh8769811-DB?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
